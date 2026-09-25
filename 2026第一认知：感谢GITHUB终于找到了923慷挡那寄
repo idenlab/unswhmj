@@ -1,0 +1,443 @@
+<h1> Mobile Article Aggregator Platform (MAP)</h1><br><br><hr><br>
+
+Mobile Article Aggregator Platform 是一个面向移动端内容聚合与分发场景的开源技术资源导航站。该项目定位于为开发者、技术研究人员以及内容运营团队提供结构化的移动端文章链接索引与快速检索能力，解决移动端技术文章分散、检索效率低下、域名迁移频繁导致链接失效等实际问题。
+
+项目本身不存储任何文章内容，仅作为外链元数据的索引层与展示层，通过静态化的资源列表与分类标签体系，帮助用户在海量移动端技术文档中快速定位目标资源。目标用户包括移动端开发工程师、全栈技术学习者、技术博客维护者以及企业内部知识库管理人员。
+
+<h2>功能概览</h2><br>
+
+<p><h3>海量链接索引管理</h3>：支持对超过 250 条移动端技术文章链接进行集中存储与分类展示，覆盖多种技术子领域。</p>
+
+<p><h3>静态化资源列表呈现</h3>：所有链接以纯 Markdown 形式维护于项目仓库中，无需数据库依赖，便于版本控制与协作编辑。</p>
+
+<p><h3>分类标签体系</h3>：根据文章主题、技术栈或访问热度对链接进行逻辑分组，降低用户筛选成本。</p>
+
+<p><h3>快速检索入口</h3>：提供基于文章 ID 或路径关键字的本地搜索功能，提升链接定位速度。</p>
+
+<p><h3>链接状态检测工具</h3>：集成可选的定时检测脚本，自动标记可能失效或响应异常的链接，保障资源列表的有效性。</p>
+
+<p><h3>移动端适配展示</h3>：前端模板针对手机和平板设备进行优化，确保在移动浏览器上获得良好的阅读与导航体验。</p>
+
+<p><h3>开源协作扩展机制</h3>：支持社区用户通过提交 Issue 或 Pull Request 的方式新增、更新或删除链接条目，保持资源列表的时效性。</p>
+
+<p><h3>轻量化部署能力</h3>：项目整体基于静态文件生成，可托管于任何支持 HTTP 服务的平台，包括 GitHub Pages、Cloudflare Pages 或自建 Nginx 服务器。</p>
+
+<h2>应用场景</h2><br>
+
+技术团队内部知识库建设：企业内部的技术团队可将本项目作为基础框架，整理团队内部积累的移动端技术文章链接，形成统一的知识索引入口，减少重复的文档查找工作。
+
+个人技术博客的友情链接扩展：独立技术博客作者可利用本项目的资源列表作为博客侧边栏的补充，为读者提供更多外部阅读资源，同时降低博客维护外链的复杂度。
+
+技术社区的内容聚合展示：技术社区运营方可基于本项目快速搭建文章推荐专区，将社区内的高质量技术帖按分类进行外链汇总，提升社区内容的曝光率与复用率。
+
+技术培训课程的参考资料索引：培训机构或技术讲师可将本项目作为课程参考资料库，将课程中涉及的外部延伸阅读链接统一整理到项目列表中，方便学员课后查阅。
+
+开源项目文档的关联资源导航：开源项目维护者可在项目文档中引用本项目的资源列表，为使用者提供相关的技术背景阅读材料，丰富项目的辅助信息生态。
+
+<h2>快速开始</h2><br>
+
+以下步骤将帮助您在本地环境快速部署并运行本项目的静态站点。
+
+# 1. 克隆项目仓库到本地
+git clone https://github.com/example/mobile-article-aggregator.git
+cd mobile-article-aggregator
+
+# 2. 安装项目依赖（基于 Node.js 环境）
+npm install
+
+# 3. 运行本地开发服务器，默认监听端口 3000
+npm run dev
+
+执行上述命令后，在浏览器中访问 `http://localhost:3000` 即可查看资源列表页面。如需构建生产环境静态文件，请执行 `npm run build`，生成的静态资源位于 `dist` 目录下。
+
+<h2>安装要求</h2><br>
+
+| 依赖项 | 必需版本 | 说明 |
+|--------|----------|------|
+| Node.js | 18.0 及以上 | 项目构建工具与开发服务器运行环境 |
+| npm | 8.0 及以上 | Node.js 包管理器，用于安装项目依赖 |
+| Git | 2.30 及以上 | 用于克隆仓库与版本管理 |
+| 现代浏览器 | Chrome 90+ / Firefox 88+ | 前端页面访问与调试支持 |
+| HTTP 服务器 | 任意静态文件服务 | 生产环境托管构建后的静态文件，如 Nginx、Caddy 或 Apache |
+| 可选：Shell 环境 | Bash 4.0+ | 运行链接状态检测脚本（位于 scripts/ 目录） |
+
+<h2>文档导航</h2><br>
+
+| 层面 | 目录 | 回答的问题 |
+|------|------|------------|
+| 用户入门 | docs/getting-started.md | 如何使用本项目的资源列表？如何通过分类标签快速找到所需文章？ |
+| 维护者指南 | docs/maintenance.md | 如何新增、修改或删除链接条目？链接格式校验规则是什么？ |
+| 开发贡献 | docs/contributing.md | 如何搭建开发环境？代码风格规范与提交信息格式要求有哪些？ |
+| 部署运维 | docs/deployment.md | 如何将站点部署到生产服务器？如何配置自定义域名与 HTTPS？ |
+
+<h2>资源列表</h2><br>
+
+<h3>移动端技术文章链接汇总</h3><br>
+
+以下列表收录了本批次（第 8/24 批，共300 个资源链接）的全部移动端文章外链。所有链接均按照用户提供的原始格式原样呈现，未做任何协议、域名或路径的改动。
+
+dl.shaoyangapp.com/Data/?/Article/4977055.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9325209.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7985786.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4228807.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9136369.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8216311.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7391879.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9091438.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8535977.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3320715.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4163211.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8372506.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3899172.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9192100.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2978055.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3094099.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4513654.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5513208.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9742500.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6501161.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9769729.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8950694.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2356287.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8665920.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5580270.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2799506.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8670303.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5988311.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8970679.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5953325.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7438436.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1394573.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2711388.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6992286.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7649709.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8624732.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3537837.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9553976.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1315890.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5394380.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1926359.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1625469.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6494948.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9069503.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2732509.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2335614.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2872515.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9757241.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3104542.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6144370.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5699571.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2127063.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6745403.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1136246.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8196823.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8462570.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3405812.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4210782.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7065641.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9244241.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6430681.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6461491.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6842394.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7896295.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6498738.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3207989.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0247878.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9702758.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2757443.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9320985.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5535715.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7424192.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7909694.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6055170.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1413098.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2350237.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2913055.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4219278.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4908202.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0467513.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4831959.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9648292.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7072979.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1912831.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4168968.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8826346.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4258927.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4215654.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5098752.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1249951.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9321476.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9753958.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4657574.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5938807.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1270123.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3311356.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1036465.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8351899.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9145281.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6146903.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0943310.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5059722.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6829514.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2495134.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4947513.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9291985.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8331099.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4524814.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1096286.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9213046.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7062209.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1577262.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2099270.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2099870.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1999646.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3274216.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6732166.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8514099.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0129177.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1674278.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4026535.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1870528.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8985879.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0170694.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5944020.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7206974.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4612522.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7593958.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1549487.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3282764.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0879288.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6433640.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5319873.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2428286.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3360484.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5982117.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6018400.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7980946.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5172365.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6624240.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4617550.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5058066.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9383819.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9326541.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0950271.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1384618.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4180847.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7110700.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6391835.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9382928.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3403286.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6425810.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3796010.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8786295.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4680349.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8222500.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2202797.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0517867.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4273793.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0217028.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2496724.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6028485.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3856655.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1954690.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5617026.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3270619.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6732359.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9791008.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7986523.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9331612.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7324095.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5720369.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3768899.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9430694.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8465802.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3243584.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7290795.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4947330.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5616686.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0539241.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1243519.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3463064.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5818688.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3765836.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0642402.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5970784.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9394765.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2673739.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0247493.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7765524.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0876627.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7191988.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4884947.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6664095.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2970515.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5053348.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8266388.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1947274.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4166245.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2757756.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9428683.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5792255.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0936979.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8040728.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8513989.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1287537.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3850358.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3765875.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3155165.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2036872.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3183248.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4943916.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4543243.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7510369.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4029825.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5065177.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7837727.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7120621.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4287322.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1680494.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1650320.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5740215.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7458652.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3624618.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5969468.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6721804.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3476147.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2914876.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1030203.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5617454.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1545863.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5082435.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0018766.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4917028.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6721384.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3301022.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7576684.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9134288.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8654088.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8499166.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3192836.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8949833.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0520987.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0846691.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9737344.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2421873.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1914410.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5985471.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0734365.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8721126.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7517403.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9072427.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8571840.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4966091.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9731837.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0484922.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2617627.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7900908.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6022165.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0242441.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0878359.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7398872.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5110680.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8709600.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8313947.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4506284.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3721095.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6763460.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4806436.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7120498.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3476572.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5720655.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2463054.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7570922.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3132425.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8951358.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8979407.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1987571.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0579471.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2459511.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7809547.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8270092.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6503653.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/9687039.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8686674.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/3187067.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7516009.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8067604.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/4986551.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/6435079.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/1358867.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/5276173.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0279836.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0537209.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2108764.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/2022706.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/8521732.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/0867650.sHtML<br>
+dl.shaoyangapp.com/Data/?/Article/7165835.sHtML<br>
+
+<h2>项目结构</h2><br>
+
+项目目录采用模块化分层设计，便于维护与扩展。各子目录职责清晰，核心资源列表与前端展示逻辑分离。
+
+
+mobile-article-aggregator/
+├── public/                          # 静态资源目录，无需构建直接复制
+│   ├── favicon.ico                  # 站点图标文件
+│   └── robots.txt                   # 搜索引擎爬虫规则，屏蔽非生产环境路径
+├── src/                             # 源代码主目录
+│   ├── assets/                      # 前端资源文件（图片、字体、全局样式）
+│   │   ├── images/                  # 项目用到的矢量图与位图素材
+│   │   └── styles/                  # 全局基础样式与 CSS 变量定义
+│   ├── components/                  # 可复用的 UI 组件
+│   │   ├── LinkList.vue             # 链接列表核心渲染组件，支持分页与过滤
+│   │   ├── SearchBar.vue            # 关键字搜索输入组件
+│   │   └── CategoryFilter.vue       # 分类标签筛选组件
+│   ├── data/                        # 数据层，存放静态链接资源列表
+│   │   ├── links.json               # 主链接索引文件，包含全部 250 条记录
+│   │   └── categories.json          # 分类映射表，定义标签与链接 ID 的对应关系
+│   ├── layouts/                     # 页面布局模板
+│   │   ├── default.vue              # 默认两栏布局（侧边栏 + 主内容区）
+│   │   └── full-width.vue           # 全宽布局，用于搜索与统计页面
+│   ├── pages/                       # 路由页面入口
+│   │   ├── index.vue                # 首页，展示全部资源列表与分类概览
+│   │   ├── about.vue                # 项目介绍与使用说明页面
+│   │   └── stats.vue                # 链接统计信息页面（总数、分类分布）
+│   ├── utils/                       # 工具函数库
+│   │   ├── validator.js             # 链接格式校验与规范化工具
+│   │   └── filter.js                # 数组过滤与排序辅助函数
+│   └── main.js                      # 应用入口文件，初始化 Vue 实例与插件
+├── scripts/                         # 运维与辅助脚本
+│   ├── check-links.sh               # 批量检测链接可用性的 Bash 脚本
+│   └── generate-sitemap.js          # 生成站点地图 XML 文件的 Node 脚本
+├── tests/                           # 单元测试与集成测试
+│   ├── unit/                        # 组件与函数的单元测试用例
+│   └── e2e/                         # 端到端测试脚本（基于 Playwright）
+├── .gitignore                       # Git 版本忽略规则文件
+├── package.json                     # Node.js 项目依赖与脚本定义
+├── README.md                        # 项目说明文档（本文件）
+├── LICENSE                          # MIT 许可证全文
+└── vite.config.js                   # Vite 构建工具配置文件
+
+
+<h2> 贡献指南</h2><br>
+
+我们欢迎社区开发者以多种形式参与本项目的维护与改进。所有贡献需遵守项目行为准则，并按照以下流程操作。
+
+第一步：查阅现有 Issue 与 Pull Request。在提交新贡献之前，请先浏览 GitHub 上的现有议题，确认无人正在处理相同问题或功能请求，避免重复劳动。
+
+第二步：Fork 项目并创建功能分支。将本仓库 Fork 至个人账号下，然后基于 `main` 分支创建一个新的分支，分支命名建议采用 `feature/功能描述` 或 `fix/问题简述` 的格式。
+
+第三步：完成代码或文档修改。请遵循项目既定的代码风格（ESLint 配置）与提交信息规范（使用 Conventional Commits 格式）。若涉及链接列表的增删，请同步更新 `src/data/links.json` 中的对应条目。
+
+第四步：编写或更新测试用例。对于新增的功能或修复的缺陷，请在 `tests/` 目录下补充相应的单元测试或端到端测试，确保代码覆盖率不下降。
+
+第五步：提交 Pull Request。推送本地分支到远程仓库后，向本项目的 `main` 分支发起 Pull Request，并在描述中清晰说明修改内容、动机以及相关 Issue 编号。项目维护者会在三个工作日内进行审阅。
+
+<h2>常见问题</h2><br>
+
+问：如何快速判断某条链接是否仍然有效？
+
+答：项目根目录下的 `scripts/check
+
+> 外链数量: 350 | 生成时间:2026-09-2606:18:48
